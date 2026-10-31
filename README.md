@@ -1,5 +1,4 @@
 # SurgeSeat
-<<<<<<< HEAD
 
 Event Ticket Reservation System - load balancing, caching, async messaging, rate limiting and observability.
 
@@ -13,17 +12,17 @@ without overselling or double-booking.
 
 ## Tech stack
 
-| Area | Tools |
-|---|---|
-| Backend | Python, FastAPI (async) |
-| Database | PostgreSQL, SQLAlchemy, Alembic |
-| Cache & rate limiting | Redis |
-| Messaging | Apache Kafka |
-| Load balancer | NGINX |
-| Monitoring | Prometheus, Grafana |
-| Load testing | k6 |
-| Frontend | React |
-| Infrastructure | Docker, Docker Compose |
+| Area                  | Tools                           |
+| --------------------- | ------------------------------- |
+| Backend               | Python, FastAPI (async)         |
+| Database              | PostgreSQL, SQLAlchemy, Alembic |
+| Cache & rate limiting | Redis                           |
+| Messaging             | Apache Kafka                    |
+| Load balancer         | NGINX                           |
+| Monitoring            | Prometheus, Grafana             |
+| Load testing          | k6                              |
+| Frontend              | React                           |
+| Infrastructure        | Docker, Docker Compose          |
 
 ## Status
 
@@ -71,5 +70,3 @@ infra/        NGINX, Prometheus, Grafana, Kubernetes configs
 load-tests/   k6 scripts and results
 docs/         Architecture notes and API contract
 ```
-=======
->>>>>>> c154d8de203cd7388625dde1ecd067017bd8d664
