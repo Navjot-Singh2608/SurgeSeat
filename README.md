@@ -1,34 +1,72 @@
 # SurgeSeat
 
-High-performance distributed event ticket reservation system.
-Skeleton only — components are added step by step.
+Event Ticket Reservation System - load balancing, caching, async messaging, rate limiting and observability.
 
-## Layout
+## What is this?
 
-| Folder | Purpose |
+SurgeSeat is a ticket booking app where users can sign up, browse events and reserve tickets.
+
+The app itself is intentionally simple. The real goal is the backend: learning and showing how large systems
+stay fast and correct when thousands of people try to book the same tickets at the same time —
+without overselling or double-booking.
+
+## Tech stack
+
+| Area | Tools |
 |---|---|
-| `backend/` | Async FastAPI service (stateless, horizontally scaled) |
-| `backend/app/api/v1` | HTTP routes |
-| `backend/app/core` | Config, settings, startup |
-| `backend/app/auth` | JWT, OAuth 2.0 / OIDC, RBAC |
-| `backend/app/models` | Database models (PostgreSQL) |
-| `backend/app/schemas` | Request/response schemas |
-| `backend/app/repositories` | Data access layer |
-| `backend/app/services` | Business logic (reservations, inventory) |
-| `backend/app/cache` | Redis caching |
-| `backend/app/messaging` | Kafka producers |
-| `backend/app/middleware` | Rate limiting, request IDs, etc. |
-| `backend/app/observability` | Prometheus metrics, logging |
-| `backend/migrations` | Database migrations |
-| `workers/` | Kafka consumers / background jobs (e.g. confirmations) |
-| `frontend/` | Minimal React app |
-| `infra/nginx` | Load balancer config |
-| `infra/postgres`, `infra/redis`, `infra/kafka` | Service configs / init scripts |
-| `infra/prometheus`, `infra/grafana` | Monitoring |
-| `infra/k8s` | Optional local Kubernetes (kind / Minikube) |
-| `load-tests/k6` | k6 scenarios; `results/` for measured runs |
-| `docs/` | Architecture notes, ADRs, benchmarks |
-| `scripts/` | Dev helper scripts |
-| `.github/workflows` | CI (free tier) |
+| Backend | Python, FastAPI (async) |
+| Database | PostgreSQL, SQLAlchemy, Alembic |
+| Cache & rate limiting | Redis |
+| Messaging | Apache Kafka |
+| Load balancer | NGINX |
+| Monitoring | Prometheus, Grafana |
+| Load testing | k6 |
+| Frontend | React |
+| Infrastructure | Docker, Docker Compose |
 
-Constraint: $0 budget — open-source, local-first tooling only.
+## Status
+
+🚧 Work in progress, built step by step.
+
+- [x] Docker setup, FastAPI health checks, PostgreSQL, migrations
+- [x] React frontend (with a mock API)
+- [ ] Authentication (JWT, roles)
+- [ ] Events and reservations
+- [ ] Monitoring
+- [ ] Load balancing across multiple API instances
+- [ ] Redis caching and rate limiting
+- [ ] Kafka background processing
+- [ ] Load and failure testing
+
+## Run it locally
+
+Requires Docker Desktop.
+
+```bash
+cp .env.example .env        # then set your own password
+docker compose up -d --build
+```
+
+- API health: http://localhost:8000/ready
+- API docs: http://localhost:8000/docs
+
+Frontend (optional):
+
+```bash
+cd frontend
+npm install
+npm run dev:mock            # runs without the backend
+```
+
+Open http://localhost:5173
+
+## Project structure
+
+```
+backend/      FastAPI service
+workers/      Kafka background workers
+frontend/     React app
+infra/        NGINX, Prometheus, Grafana, Kubernetes configs
+load-tests/   k6 scripts and results
+docs/         Architecture notes and API contract
+```
