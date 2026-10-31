@@ -1,4 +1,5 @@
 # SurgeSeat
+<<<<<<< HEAD
 
 Event Ticket Reservation System - load balancing, caching, async messaging, rate limiting and observability.
 
@@ -70,3 +71,5 @@ infra/        NGINX, Prometheus, Grafana, Kubernetes configs
 load-tests/   k6 scripts and results
 docs/         Architecture notes and API contract
 ```
+=======
+>>>>>>> c154d8de203cd7388625dde1ecd067017bd8d664
